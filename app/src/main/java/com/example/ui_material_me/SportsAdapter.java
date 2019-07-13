@@ -1,0 +1,70 @@
+package com.example.ui_material_me;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
+public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder> {
+
+    private ArrayList<Sport> mSportsData;
+    private Context context;
+
+    public SportsAdapter(Context context, ArrayList<Sport> mSportsData) {
+        this.mSportsData = mSportsData;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item,
+                parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        Sport currentSport =mSportsData.get(position);
+        // Populate the textView with data.
+        viewHolder.bindTo(currentSport);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mSportsData.size();
+    }
+
+
+    /**
+     * Inner class for view holding.
+     */
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView mTitleText;
+        private TextView mInfoText;
+        private ImageView mSportsImage;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            // Initialize the views.
+            mTitleText = itemView.findViewById(R.id.title);
+            mInfoText = itemView.findViewById(R.id.subTitle);
+            mSportsImage = itemView.findViewById(R.id.sportsImage);
+        }
+
+        public void bindTo(Sport currentSport) {
+            mTitleText.setText(currentSport.getTitle());
+            mInfoText.setText(currentSport.getInfo());
+            Glide.with(context).load(currentSport.getImageResource()).into(mSportsImage);
+        }
+    }
+}
