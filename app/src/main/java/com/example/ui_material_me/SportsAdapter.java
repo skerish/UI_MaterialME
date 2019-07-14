@@ -1,6 +1,7 @@
 package com.example.ui_material_me;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder
     /**
      * Inner class for view holding.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
 
         private TextView mTitleText;
         private TextView mInfoText;
@@ -59,12 +60,24 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsAdapter.ViewHolder
             mTitleText = itemView.findViewById(R.id.title);
             mInfoText = itemView.findViewById(R.id.subTitle);
             mSportsImage = itemView.findViewById(R.id.sportsImage);
+
+            // Sets the onClickListener to the entire view.
+            itemView.setOnClickListener(this);
         }
 
         public void bindTo(Sport currentSport) {
             mTitleText.setText(currentSport.getTitle());
             mInfoText.setText(currentSport.getInfo());
             Glide.with(context).load(currentSport.getImageResource()).into(mSportsImage);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Sport currentSport = mSportsData.get(getAdapterPosition());
+            Intent detailIntent = new Intent(context, DetailActivity.class);
+            detailIntent.putExtra("title_key", currentSport.getTitle());
+            detailIntent.putExtra("image_key", currentSport.getImageResource());
+            context.startActivity(detailIntent);
         }
     }
 }

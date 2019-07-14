@@ -3,7 +3,9 @@
     <string name="title_placeHolder">Title</string>
     <string name="sports_info_placeholder">Here is some news</string>
     <string name="news_placeholder">News</string>
-    
+    <string name="sports_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="image_description">This is an Image</string>
+
     <string-array name="sports_title">
         <item>Baseball</item>
         <item>Badminton</item>
@@ -31,7 +33,7 @@
         <item>Here is some Table Tennis news!</item>
         <item>Here is some Tennis news!</item>
     </string-array>
-    
+
     <string-array name="sports_images">
         <item>@drawable/img_baseball</item>
         <item>@drawable/img_badminton</item>
